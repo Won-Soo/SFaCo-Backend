@@ -1,15 +1,15 @@
 package wonsoo.sfaco.domain.boardcodi;
 
 import lombok.Getter;
+import wonsoo.sfaco.domain.WritingDateInfo;
 import wonsoo.sfaco.domain.category.Category;
 import wonsoo.sfaco.domain.user.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
-public class BoardCodi {  // 코디 게시판
+public class BoardCodi extends WritingDateInfo {  // 코디 게시판
 
     @Id
     @GeneratedValue
@@ -25,9 +25,6 @@ public class BoardCodi {  // 코디 게시판
     private Gender gender;  // 성별
 
     private String fileName;  // 첨부파일명
-    private LocalDateTime createdAt;  // 작성일자
-    private LocalDateTime modifiedAt;  // 수정일자
-    private LocalDateTime deletedAt;  // 삭제일자
     private String modifier;  // 수정자
 
     private User user;  // 회원

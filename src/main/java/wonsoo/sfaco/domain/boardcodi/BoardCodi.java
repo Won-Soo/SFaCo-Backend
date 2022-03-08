@@ -27,7 +27,12 @@ public class BoardCodi extends WritingDateInfo {  // 코디 게시판
     private String fileName;  // 첨부파일명
     private String modifier;  // 수정자
 
+    @ManyToOne
+    @JoinColumn(name = "writer")
     private User user;  // 회원
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;  // 카테고리
 
 }

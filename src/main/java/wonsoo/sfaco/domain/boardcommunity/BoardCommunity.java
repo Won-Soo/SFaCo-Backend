@@ -21,7 +21,12 @@ public class BoardCommunity extends WritingDateInfo {  // 커뮤니티 게시판
     @Column(columnDefinition = "text")
     private String contents;  // 내용
 
+    @ManyToOne
+    @JoinColumn(name = "writer")
     private User user;  // 회원
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;  // 카테고리
 
 }

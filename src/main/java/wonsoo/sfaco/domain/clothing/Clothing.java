@@ -24,6 +24,8 @@ public class Clothing {  // 의상
     @Column(columnDefinition = "text")
     private String site;  // 구매처
 
+    @ManyToOne
+    @JoinColumn(name = "codi_id")
     private BoardCodi boardCodi;  // 코디 게시판
 
 }

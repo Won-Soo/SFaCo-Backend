@@ -19,7 +19,12 @@ public class Reply extends WritingDateInfo {  // 댓글
     @Column(length = 300)
     private String contents;  // 내용
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;  // 회원
+
+    @ManyToOne
+    @JoinColumn(name = "community_id")
     private BoardCommunity boardCommunity;  // 커뮤니티 게시판
 
 }

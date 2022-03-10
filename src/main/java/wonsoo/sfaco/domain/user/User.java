@@ -1,10 +1,16 @@
 package wonsoo.sfaco.domain.user;
 
 import lombok.Getter;
+import wonsoo.sfaco.domain.boardcodi.BoardCodi;
+import wonsoo.sfaco.domain.boardcommunity.BoardCommunity;
+import wonsoo.sfaco.domain.like.Like;
+import wonsoo.sfaco.domain.reply.Reply;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,5 +31,17 @@ public class User {  // 회원
     @Column(length = 5)
     @Enumerated(EnumType.STRING)
     private Authority authority;  // 관리권한
+
+    @OneToMany(mappedBy = "user")
+    private List<BoardCodi> codiList = new ArrayList<>();  // 코디 게시판
+
+    @OneToMany(mappedBy = "user")
+    private List<BoardCommunity> communityList = new ArrayList<>();  // 커뮤니티 게시판
+
+    @OneToMany(mappedBy = "user")
+    private List<Reply> replyList = new ArrayList<>();  // 댓글
+
+    @OneToMany(mappedBy = "user")
+    private List<Like> likeList = new ArrayList<>();  // 좋아요
 
 }

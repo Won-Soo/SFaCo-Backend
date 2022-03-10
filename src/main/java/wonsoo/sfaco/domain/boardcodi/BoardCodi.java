@@ -3,9 +3,15 @@ package wonsoo.sfaco.domain.boardcodi;
 import lombok.Getter;
 import wonsoo.sfaco.domain.WritingDateInfo;
 import wonsoo.sfaco.domain.category.Category;
+import wonsoo.sfaco.domain.clothing.Clothing;
 import wonsoo.sfaco.domain.user.User;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
@@ -27,12 +33,15 @@ public class BoardCodi extends WritingDateInfo {  // 코디 게시판
     private String fileName;  // 첨부파일명
     private String modifier;  // 수정자
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "writer")
     private User user;  // 회원
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "category_id")
     private Category category;  // 카테고리
+
+    @OneToMany(mappedBy = "boardCodi", cascade = ALL)
+    private List<Clothing> clothingList = new ArrayList<>();  // 의상
 
 }

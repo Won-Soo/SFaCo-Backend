@@ -5,6 +5,8 @@ import wonsoo.sfaco.domain.boardcodi.BoardCodi;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Getter
 public class Clothing {  // 의상
@@ -24,7 +26,7 @@ public class Clothing {  // 의상
     @Column(columnDefinition = "text")
     private String site;  // 구매처
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "codi_id")
     private BoardCodi boardCodi;  // 코디 게시판
 

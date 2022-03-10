@@ -7,6 +7,8 @@ import wonsoo.sfaco.domain.user.User;
 
 import javax.persistence.*;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
 @Getter
 public class Reply extends WritingDateInfo {  // 댓글
@@ -19,11 +21,11 @@ public class Reply extends WritingDateInfo {  // 댓글
     @Column(length = 300)
     private String contents;  // 내용
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "user_id")
     private User user;  // 회원
 
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "community_id")
     private BoardCommunity boardCommunity;  // 커뮤니티 게시판
 

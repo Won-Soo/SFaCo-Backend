@@ -22,7 +22,7 @@ public class Reply extends WritingDateInfo {  // 댓글
     private String contents;  // 내용
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "writer")
     private User user;  // 회원
 
     @ManyToOne(fetch = LAZY)

@@ -19,7 +19,7 @@ public class CategoryRepository {
 
     // 카테고리 이름으로 조회
     public List<Category> findByName(String name) {
-        return em.createQuery("select c from Category c where c.name = :name", Category.class).getResultList();
+        return em.createQuery("select c from Category c where c.name = :name", Category.class).setParameter("name", name).getResultList();
     }
 
     // 카테고리 전체 조회

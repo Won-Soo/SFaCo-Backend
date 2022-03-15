@@ -12,8 +12,8 @@ public class CategoryRepository {
 
     private final EntityManager em;
 
-    // 카테고리 아이디로 조회
-    public Category findById(Long id) {
+    // 카테고리 단 건 조회
+    public Category findOne(Long id) {
         return em.find(Category.class, id);
     }
 

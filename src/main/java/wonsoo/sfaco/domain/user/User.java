@@ -18,8 +18,9 @@ public class User {  // 회원
 
     @Id
     @Column(name = "user_id")
-    private String id;  // 아이디
+    private Long id;  // 회원 ID
 
+    private String loginId;  // 아이디
     private String password;  // 비밀번호
     private String name;  // 이름
     private LocalDate birth;  // 생년월일

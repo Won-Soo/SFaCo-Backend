@@ -1,6 +1,7 @@
 package wonsoo.sfaco.domain.boardcodi;
 
 import lombok.Getter;
+import wonsoo.sfaco.domain.File.File;
 import wonsoo.sfaco.domain.WritingDateInfo;
 import wonsoo.sfaco.domain.category.Category;
 import wonsoo.sfaco.domain.clothing.Clothing;
@@ -30,7 +31,6 @@ public class BoardCodi extends WritingDateInfo {  // 코디 게시판
     @Enumerated(EnumType.STRING)
     private Gender gender;  // 성별
 
-    private String fileName;  // 첨부파일명
     private String modifier;  // 수정자
 
     @ManyToOne(fetch = LAZY)
@@ -43,5 +43,9 @@ public class BoardCodi extends WritingDateInfo {  // 코디 게시판
 
     @OneToMany(mappedBy = "boardCodi", cascade = ALL)
     private List<Clothing> clothingList = new ArrayList<>();  // 의상
+
+    @OneToOne(fetch = LAZY, cascade = ALL)
+    @JoinColumn(name = "file_id")
+    private File file;  // 파일
 
 }

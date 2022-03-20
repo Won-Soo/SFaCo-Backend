@@ -1,5 +1,6 @@
 package wonsoo.sfaco.domain.user;
 
+import lombok.Builder;
 import lombok.Getter;
 import wonsoo.sfaco.domain.boardcodi.BoardCodi;
 import wonsoo.sfaco.domain.boardcommunity.BoardCommunity;
@@ -17,6 +18,7 @@ import java.util.List;
 public class User {  // 회원
 
     @Id
+    @GeneratedValue
     @Column(name = "user_id")
     private Long id;  // 회원 ID
 

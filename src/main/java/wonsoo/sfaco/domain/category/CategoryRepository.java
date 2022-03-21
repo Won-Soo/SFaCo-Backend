@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -18,8 +19,9 @@ public class CategoryRepository {
     }
 
     // 카테고리 이름으로 조회
-    public List<Category> findByName(String name) {
-        return em.createQuery("select c from Category c where c.name = :name", Category.class).setParameter("name", name).getResultList();
+    public Optional<Category> findByName(String name) {
+        List<Category> findCategoryList = em.createQuery("select c from Category c where c.name = :name", Category.class).setParameter("name", name).getResultList();
+        return findCategoryList.stream().findFirst();
     }
 
     // 카테고리 전체 조회

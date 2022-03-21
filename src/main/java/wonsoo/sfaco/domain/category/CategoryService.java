@@ -26,8 +26,8 @@ public class CategoryService {
         return categoryRepository.findOne(categoryId);
     }
 
-    // 이름으로 조회
+    // 카테고리 이름으로 조회
     public Category findByName(String name) {
-        return categoryRepository.findByName(name).get(0);
+        return categoryRepository.findByName(name).orElse(null);
     }
 }

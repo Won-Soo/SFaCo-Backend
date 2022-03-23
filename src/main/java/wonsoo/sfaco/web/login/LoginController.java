@@ -82,4 +82,36 @@ public class LoginController {
         private String tel;
     }
 
+
+    /**
+     * Password 찾기 API
+     */
+    @GetMapping("/users/findPassword")
+    public Map<String, Object> findPassword(@RequestBody findPasswordRequest request) {
+
+        int result = loginService.findPassword(request.getLoginId(), request.getName(), request.getEmail());
+
+        System.out.println("result = " + result);
+
+        Map<String, Object> response = new HashMap<>();
+
+        if (result > 0) {
+            response.put("result", "FAIL");
+            response.put("message", "Do not exist User Info");
+        } else {  // 로그인 성공
+            User loginUser = userService.findByLoginId(request.getLoginId());
+            response.put("result", "SUCCESS");
+            response.put("message", "Password: " + loginUser.getPassword());
+        }
+
+        return response;
+    }
+
+    @Getter
+    static class findPasswordRequest {
+        private String loginId;
+        private String name;
+        private String email;
+    }
+
 }

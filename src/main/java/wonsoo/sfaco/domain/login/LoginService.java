@@ -45,4 +45,22 @@ public class LoginService {
         }
     }
 
+
+    /**
+     * Password 찾기
+     */
+    public int findPassword(String loginId, String name, String email) {
+        User findUserByLoginId = userService.findByLoginId(loginId);
+
+        if (findUserByLoginId == null) {  // id가 틀림
+            return 1;
+        } else {
+            if (findUserByLoginId.getName().equals(name) && findUserByLoginId.getEmail().equals(email)) {  // pw 찾기 성공
+                return 0;
+            } else {  // 이름이나 이메일이 틀림
+                return 2;
+            }
+        }
+    }
+
 }

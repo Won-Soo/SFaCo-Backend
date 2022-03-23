@@ -47,4 +47,21 @@ public class User {  // 회원
     @OneToMany(mappedBy = "user")
     private List<Like> likeList = new ArrayList<>();  // 좋아요
 
+    //== 생성자 ==//
+    public User() {
+    }
+
+    @Builder
+    public User(String loginId, String password, String name, LocalDate birth, String tel, String email, String nickname, LocalDateTime joinedAt, Authority authority) {
+        this.loginId = loginId;
+        this.password = password;
+        this.name = name;
+        this.birth = birth;
+        this.tel = tel;
+        this.email = email;
+        this.nickname = nickname;
+        this.joinedAt = joinedAt;
+        this.authority = authority;
+    }
+
 }

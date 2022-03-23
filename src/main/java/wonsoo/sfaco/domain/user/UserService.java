@@ -31,6 +31,16 @@ public class UserService {
     /**
      * 회원 조회
      */
+    // 단 건 조회
+    public User findOne(Long userId) {
+        return userRepository.findOne(userId);
+    }
+
+    // 회원 전체 조회
+    public List<User> findUsers() {
+        return userRepository.findAll();
+    }
+
     // 로그인 아이디로 회원 조회
     public User findByLoginId(String loginId) {
         return userRepository.findByLoginId(loginId).orElse(null);
@@ -40,9 +50,9 @@ public class UserService {
         return userRepository.findByLoginId2(loginId).orElse(null);
     }
 
-    // 회원 전체 조회
-    public List<User> findUsers() {
-        return userRepository.findAll();
+    // 전화번호로 조회
+    public User findByTel(String tel) {
+        return userRepository.findByTel(tel).orElse(null);
     }
 
 }

@@ -18,6 +18,16 @@ public class UserRepository {
         em.persist(user);
     }
 
+    // 회원 전체 조회
+    public List<User> findAll() {
+        return em.createQuery("select u from User u", User.class).getResultList();
+    }
+
+    // 회원 단건 조회
+    public User findOne(Long id) {
+        return em.find(User.class, id);
+    }
+
     // 로그인 아이디로 회원 조회
     public Optional<User> findByLoginId(String loginId) {
         return findAll().stream()
@@ -30,9 +40,10 @@ public class UserRepository {
         return findUserList.stream().findFirst();
     }
 
-    // 회원 전체 조회
-    public List<User> findAll() {
-        return em.createQuery("select u from User u", User.class).getResultList();
+    // 회원 전화번호로 조회
+    public Optional<User> findByTel(String tel) {
+        List<User> findUserList = em.createQuery("select u from User u where u.tel = :tel", User.class).setParameter("tel", tel).getResultList();
+        return findUserList.stream().findFirst();
     }
 
 }

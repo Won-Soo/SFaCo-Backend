@@ -53,4 +53,33 @@ public class LoginController {
         private String password;
     }
 
+
+    /**
+     * ID 찾기 API
+     */
+    @GetMapping("/users/findId")
+    public Map<String, Object> findLoginId(@RequestBody findLoginIdRequest request) {
+
+        int result = loginService.findLoginId(request.getName(), request.getTel());
+
+        Map<String, Object> response = new HashMap<>();
+
+        if (result > 0) {
+            response.put("result", "FAIL");
+            response.put("message", "Do not exist User Info");
+        } else {  // ID 찾기 성공
+            User findUser = userService.findByTel(request.getTel());
+            response.put("result", "SUCCESS");
+            response.put("message", "ID: " + findUser.getLoginId());
+        }
+
+        return response;
+    }
+
+    @Getter
+    static class findLoginIdRequest {
+        private String name;
+        private String tel;
+    }
+
 }
